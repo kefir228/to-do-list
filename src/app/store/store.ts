@@ -2,7 +2,7 @@
 
 import { configureStore } from "@reduxjs/toolkit";
 import tasksReducer, { TasksState } from '@/app/store/tasksSlice'
-import { loadState, saveState } from "./localStorage";
+import { saveState } from "./localStorage";
 
 const preloadedState: { task: TasksState } | undefined = undefined
 
