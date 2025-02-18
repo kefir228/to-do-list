@@ -34,12 +34,13 @@ export default function TaskList() {
         if (!destination) return;
         if (source.droppableId === destination.droppableId && source.index === destination.index) return;
         
-        const sourceList = Array.from(tasks[source.droppableId]);
-        const destinationList = Array.from(tasks[destination.droppableId]);
+        const sourceList = [...tasks[source.droppableId]]
+        const destinationList = [...tasks[destination.droppableId]]
+        
         const [movedTask] = sourceList.splice(source.index, 1);
         
-        movedTask.status = destination.droppableId;
-        destinationList.splice(destination.index, 0, movedTask);
+        const updatedTask = { ...movedTask, status: destination.droppableId }
+        destinationList.splice(destination.index, 0, updatedTask);
 
         dispatch(updateTasks({
             ...tasks,
@@ -57,10 +58,10 @@ export default function TaskList() {
                             <div
                                 ref={provided.innerRef}
                                 {...provided.droppableProps}
-                                className="w-1/3 bg-gray-100 p-2 rounded-md"
+                                className="w-1/3 bg-gray-500 p-2 rounded-md"
                             >
                                 <p className="text-2xl font-bold">{section}</p>
-                                {tasks[section]?.map((task, index) => (
+                                {tasks[section]?.length > 0 ? tasks[section].map((task, index) => (
                                     <Draggable key={task.id} draggableId={task.id} index={index}>
                                         {(provided) => (
                                             <div
@@ -72,7 +73,7 @@ export default function TaskList() {
                                             </div>
                                         )}
                                     </Draggable>
-                                ))}
+                                )) : <p>No tasks</p>}
                                 {provided.placeholder}
                             </div>
                         )}

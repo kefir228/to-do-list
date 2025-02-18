@@ -27,7 +27,7 @@ export const loadState = ():  TasksState | undefined => {
 
 export const saveState = (state: { tasks: TasksState }) => {
     try {
-        const seriliazedState = JSON.stringify(state)
+        const seriliazedState = JSON.stringify(state.tasks)
         localStorage.setItem('tasksState', seriliazedState)
     } catch (error) {
         console.error("Could not save state", error)

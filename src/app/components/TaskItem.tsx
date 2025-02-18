@@ -25,7 +25,7 @@ export default function TaskItem({ task }: Props) {
     const bgColorClass = task.completed ? categoryColors['default'] : categoryColors[task.category] || ''
 
     return (
-        <li className={`flex justify-between p-2 border-b ${bgColorClass}`}>
+        <li className={`flex justify-between p-2  ${bgColorClass}`}>
             <span
                 onClick={() => dispatch(toggleTask(task.id))}
                 className={task.completed ? "line-through text-gray-500 cursor-pointer" : "cursor-pointer"}
