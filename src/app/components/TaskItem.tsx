@@ -28,7 +28,7 @@ export default function TaskItem({ task }: Props) {
         <li className={`flex justify-between p-2  ${bgColorClass}`}>
             <span
                 onClick={() => dispatch(toggleTask(task.id))}
-                className={task.completed ? "line-through text-gray-500 cursor-pointer" : "cursor-pointer"}
+                className={task.completed ? "line-through text-gray-500 cursor-pointer truncate" : "cursor-pointer truncate"}
             >
                 {task.text}
             </span>
